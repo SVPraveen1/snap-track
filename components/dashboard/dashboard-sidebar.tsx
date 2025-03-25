@@ -19,7 +19,7 @@ export function DashboardSidebar() {
     <div className="hidden md:flex h-screen w-64 flex-col border-r bg-background">
       <div className="flex h-[60px] items-center border-b px-6">
         <Link href="/dashboard" className="flex items-center">
-          <span className="text-xl font-semibold tracking-tight">Calorimate</span>
+          <span className="text-xl font-semibold tracking-tight">SnapTrack</span>
         </Link>
       </div>
       <div className="flex-1 overflow-auto">
