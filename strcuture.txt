@@ -1,0 +1,181 @@
+Directory structure:
+└── svpraveen1-snaptrack/
+    ├── components.json
+    ├── middleware.ts
+    ├── next.config.js
+    ├── next.config.mjs
+    ├── package.json
+    ├── pnpm-lock.yaml
+    ├── postcss.config.mjs
+    ├── tailwind.config.ts
+    ├── tsconfig.json
+    ├── v0-user-next.config.js
+    ├── app/
+    │   ├── globals.css
+    │   ├── layout.tsx
+    │   ├── page.tsx
+    │   ├── add-food/
+    │   │   └── page.tsx
+    │   ├── api/
+    │   │   ├── auth/
+    │   │   │   └── [...nextauth]/
+    │   │   │       └── route.ts
+    │   │   ├── food/
+    │   │   │   ├── barcode/
+    │   │   │   │   └── route.ts
+    │   │   │   ├── entries/
+    │   │   │   │   └── route.ts
+    │   │   │   └── image-recognition/
+    │   │   │       └── route.ts
+    │   │   └── user/
+    │   │       └── preferences/
+    │   │           └── route.ts
+    │   ├── dashboard/
+    │   │   └── page.tsx
+    │   ├── history/
+    │   │   └── page.tsx
+    │   ├── login/
+    │   │   └── page.tsx
+    │   ├── profile/
+    │   │   ├── page.tsx
+    │   │   ├── dashboard/
+    │   │   │   └── page.tsx
+    │   │   ├── history/
+    │   │   │   └── page.tsx
+    │   │   ├── reports/
+    │   │   │   └── page.tsx
+    │   │   ├── settings/
+    │   │   │   └── page.tsx
+    │   │   └── upload/
+    │   │       └── page.tsx
+    │   ├── register/
+    │   │   └── page.tsx
+    │   ├── reports/
+    │   │   └── page.tsx
+    │   └── settings/
+    │       └── page.tsx
+    ├── components/
+    │   ├── add-food-button.tsx
+    │   ├── add-food-tabs.tsx
+    │   ├── auth-provider.tsx
+    │   ├── barcode-scanner.tsx
+    │   ├── calorie-overview.tsx
+    │   ├── dashboard-header.tsx
+    │   ├── dashboard-sidebar.tsx
+    │   ├── food-history-list.tsx
+    │   ├── food-result-card.tsx
+    │   ├── image-upload-form.tsx
+    │   ├── landing-features.tsx
+    │   ├── landing-footer.tsx
+    │   ├── landing-header.tsx
+    │   ├── landing-hero.tsx
+    │   ├── login-form.tsx
+    │   ├── manual-entry-form.tsx
+    │   ├── mode-toggle.tsx
+    │   ├── nutrition-insights.tsx
+    │   ├── nutrition-reports.tsx
+    │   ├── profile-header.tsx
+    │   ├── profile-overview.tsx
+    │   ├── profile-sidebar-content.tsx
+    │   ├── profile-sidebar.tsx
+    │   ├── recent-entries.tsx
+    │   ├── register-form.tsx
+    │   ├── screenshot-upload-form.tsx
+    │   ├── theme-provider.tsx
+    │   ├── user-preferences-form.tsx
+    │   ├── add-food/
+    │   │   ├── add-food-tabs.tsx
+    │   │   ├── barcode-scanner.tsx
+    │   │   ├── food-result-card.tsx
+    │   │   ├── image-upload-form.tsx
+    │   │   └── manual-entry-form.tsx
+    │   ├── auth/
+    │   │   ├── login-form.tsx
+    │   │   └── register-form.tsx
+    │   ├── dashboard/
+    │   │   ├── add-food-button.tsx
+    │   │   ├── calorie-overview.tsx
+    │   │   ├── dashboard-header.tsx
+    │   │   ├── dashboard-sidebar.tsx
+    │   │   ├── nutrition-insights.tsx
+    │   │   └── recent-entries.tsx
+    │   ├── history/
+    │   │   └── food-history-list.tsx
+    │   ├── profile/
+    │   │   ├── profile-header.tsx
+    │   │   ├── profile-overview.tsx
+    │   │   ├── profile-sidebar-content.tsx
+    │   │   ├── profile-sidebar.tsx
+    │   │   └── screenshot-upload-form.tsx
+    │   ├── reports/
+    │   │   └── nutrition-reports.tsx
+    │   ├── settings/
+    │   │   └── user-preferences-form.tsx
+    │   └── ui/
+    │       ├── accordion.tsx
+    │       ├── alert-dialog.tsx
+    │       ├── alert.tsx
+    │       ├── aspect-ratio.tsx
+    │       ├── avatar.tsx
+    │       ├── badge.tsx
+    │       ├── breadcrumb.tsx
+    │       ├── button.tsx
+    │       ├── calendar.tsx
+    │       ├── card.tsx
+    │       ├── carousel.tsx
+    │       ├── chart.tsx
+    │       ├── checkbox.tsx
+    │       ├── collapsible.tsx
+    │       ├── command.tsx
+    │       ├── context-menu.tsx
+    │       ├── dialog.tsx
+    │       ├── drawer.tsx
+    │       ├── dropdown-menu.tsx
+    │       ├── form.tsx
+    │       ├── hover-card.tsx
+    │       ├── input-otp.tsx
+    │       ├── input.tsx
+    │       ├── label.tsx
+    │       ├── menubar.tsx
+    │       ├── navigation-menu.tsx
+    │       ├── pagination.tsx
+    │       ├── popover.tsx
+    │       ├── progress.tsx
+    │       ├── radio-group.tsx
+    │       ├── resizable.tsx
+    │       ├── scroll-area.tsx
+    │       ├── select.tsx
+    │       ├── separator.tsx
+    │       ├── sheet.tsx
+    │       ├── sidebar.tsx
+    │       ├── skeleton.tsx
+    │       ├── slider.tsx
+    │       ├── sonner.tsx
+    │       ├── switch.tsx
+    │       ├── table.tsx
+    │       ├── tabs.tsx
+    │       ├── textarea.tsx
+    │       ├── toast.tsx
+    │       ├── toaster.tsx
+    │       ├── toggle-group.tsx
+    │       ├── toggle.tsx
+    │       ├── tooltip.tsx
+    │       ├── use-mobile.tsx
+    │       └── use-toast.ts
+    ├── hooks/
+    │   ├── use-mobile.tsx
+    │   └── use-toast.ts
+    ├── lib/
+    │   ├── auth.ts
+    │   ├── client.ts
+    │   ├── server.ts
+    │   ├── utils.ts
+    │   └── supabase/
+    │       ├── client.ts
+    │       └── server.ts
+    ├── public/
+    ├── styles/
+    │   └── globals.css
+    └── supabase/
+        └── migrations/
+            └── 20240322_initial_schema.sql
