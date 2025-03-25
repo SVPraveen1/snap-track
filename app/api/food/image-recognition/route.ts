@@ -105,12 +105,12 @@ export async function POST(req: NextRequest) {
       }
 
       // Ensure food_name is included in the insert
-      if (!data.food_name && data.food_data?.items?.[0]?.name) {
-        data.food_name = data.food_data.items[0].name
+      if (data && data[0] && !data[0].food_name && data[0].food_data?.items?.[0]?.name) {
+        data[0].food_name = data[0].food_data.items[0].name
       }
 
       // Validate required fields
-      if (!data.food_name) {
+      if (!data?.[0]?.food_name) {
         return NextResponse.json(
           { error: "Food name is required" },
           { status: 400 }

@@ -27,8 +27,8 @@ interface UserHealth {
   age: number
   weight: number // in kg
   height: number // in cm
-  gender: "male" | "female"
-  activity_level: "sedentary" | "light" | "moderate" | "active" | "very_active"
+  gender: "male" | "female" | "other"
+  activity_level: "sedentary" | "light" | "moderate" | "very_active" | "extra_active"
   goal: "maintain" | "lose" | "gain"
 }
 
@@ -43,9 +43,9 @@ const activityMultipliers = {
   sedentary: 1.2, // Little or no exercise
   light: 1.375, // Light exercise 1-3 days/week
   moderate: 1.55, // Moderate exercise 3-5 days/week
-  active: 1.725, // Heavy exercise 6-7 days/week
-  very_active: 1.9, // Very heavy exercise, physical job
-}
+  very_active: 1.725, // Very heavy exercise, physical job
+  extra_active: 1.9, // Extra heavy exercise, physical job
+} as const
 
 const goalMultipliers = {
   lose: 0.8, // 20% deficit
@@ -263,7 +263,7 @@ export function HealthGoals() {
                 <Label htmlFor="gender">Gender</Label>
                 <Select
                   value={userHealth.gender}
-                  onValueChange={(value: "male" | "female") => setUserHealth({ ...userHealth, gender: value })}
+                  onValueChange={(value: "male" | "female" | "other") => setUserHealth({ ...userHealth, gender: value })}
                 >
                   <SelectTrigger id="gender">
                     <SelectValue placeholder="Select gender" />
@@ -271,6 +271,7 @@ export function HealthGoals() {
                   <SelectContent>
                     <SelectItem value="male">Male</SelectItem>
                     <SelectItem value="female">Female</SelectItem>
+                    <SelectItem value="other">Other</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -288,8 +289,8 @@ export function HealthGoals() {
                     <SelectItem value="sedentary">Sedentary (little or no exercise)</SelectItem>
                     <SelectItem value="light">Light (exercise 1-3 days/week)</SelectItem>
                     <SelectItem value="moderate">Moderate (exercise 3-5 days/week)</SelectItem>
-                    <SelectItem value="active">Active (exercise 6-7 days/week)</SelectItem>
                     <SelectItem value="very_active">Very Active (intense exercise daily)</SelectItem>
+                    <SelectItem value="extra_active">Extra Active (intense exercise daily)</SelectItem>
                   </SelectContent>
                 </Select>
               </div>

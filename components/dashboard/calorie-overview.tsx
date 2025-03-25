@@ -44,7 +44,11 @@ interface DailyProgress {
   fat: number
 }
 
-export function CalorieOverview() {
+interface CalorieOverviewProps {
+  className?: string
+}
+
+export function CalorieOverview({ className }: CalorieOverviewProps) {
   const [plan, setPlan] = useState<NutritionPlan | null>(null)
   const [progress, setProgress] = useState<DailyProgress>({
     calories: 0,
@@ -52,6 +56,7 @@ export function CalorieOverview() {
     carbs: 0,
     fat: 0
   })
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     loadNutritionPlan()
@@ -119,135 +124,142 @@ export function CalorieOverview() {
   }
 
   return (
-    <div className="space-y-4">
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Calories</CardTitle>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              className="h-4 w-4 text-muted-foreground"
-            >
-              <path d="M12 2v20M2 12h20" />
-            </svg>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{Math.round(progress.calories)}</div>
-            <div className="text-xs text-muted-foreground">
-              of {plan?.dailyCalories || '---'} kcal
-            </div>
-            <Progress 
-              value={calculatePercentage(progress.calories, plan?.dailyCalories || 0)} 
-              className="mt-2"
-            />
-          </CardContent>
-        </Card>
+    <Card className={className}>
+      <CardHeader>
+        <CardTitle>Calorie Overview</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="space-y-4">
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Calories</CardTitle>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  className="h-4 w-4 text-muted-foreground"
+                >
+                  <path d="M12 2v20M2 12h20" />
+                </svg>
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">{Math.round(progress.calories)}</div>
+                <div className="text-xs text-muted-foreground">
+                  of {plan?.dailyCalories || '---'} kcal
+                </div>
+                <Progress 
+                  value={calculatePercentage(progress.calories, plan?.dailyCalories || 0)} 
+                  className="mt-2"
+                />
+              </CardContent>
+            </Card>
 
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Protein</CardTitle>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              className="h-4 w-4 text-muted-foreground"
-            >
-              <path d="M12 2v20M2 12h20" />
-            </svg>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{Math.round(progress.protein)}g</div>
-            <div className="text-xs text-muted-foreground">
-              of {plan?.macros.protein || '---'}g
-            </div>
-            <Progress 
-              value={calculatePercentage(progress.protein, plan?.macros.protein || 0)} 
-              className="mt-2"
-            />
-          </CardContent>
-        </Card>
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Protein</CardTitle>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  className="h-4 w-4 text-muted-foreground"
+                >
+                  <path d="M12 2v20M2 12h20" />
+                </svg>
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">{Math.round(progress.protein)}g</div>
+                <div className="text-xs text-muted-foreground">
+                  of {plan?.macros.protein || '---'}g
+                </div>
+                <Progress 
+                  value={calculatePercentage(progress.protein, plan?.macros.protein || 0)} 
+                  className="mt-2"
+                />
+              </CardContent>
+            </Card>
 
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Carbs</CardTitle>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              className="h-4 w-4 text-muted-foreground"
-            >
-              <path d="M12 2v20M2 12h20" />
-            </svg>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{Math.round(progress.carbs)}g</div>
-            <div className="text-xs text-muted-foreground">
-              of {plan?.macros.carbs || '---'}g
-            </div>
-            <Progress 
-              value={calculatePercentage(progress.carbs, plan?.macros.carbs || 0)} 
-              className="mt-2"
-            />
-          </CardContent>
-        </Card>
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Carbs</CardTitle>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  className="h-4 w-4 text-muted-foreground"
+                >
+                  <path d="M12 2v20M2 12h20" />
+                </svg>
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">{Math.round(progress.carbs)}g</div>
+                <div className="text-xs text-muted-foreground">
+                  of {plan?.macros.carbs || '---'}g
+                </div>
+                <Progress 
+                  value={calculatePercentage(progress.carbs, plan?.macros.carbs || 0)} 
+                  className="mt-2"
+                />
+              </CardContent>
+            </Card>
 
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Fat</CardTitle>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              className="h-4 w-4 text-muted-foreground"
-            >
-              <path d="M12 2v20M2 12h20" />
-            </svg>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{Math.round(progress.fat)}g</div>
-            <div className="text-xs text-muted-foreground">
-              of {plan?.macros.fat || '---'}g
-            </div>
-            <Progress 
-              value={calculatePercentage(progress.fat, plan?.macros.fat || 0)} 
-              className="mt-2"
-            />
-          </CardContent>
-        </Card>
-      </div>
-
-      {plan && (
-        <div className="flex justify-between items-center pt-4 border-t">
-          <div className="text-sm text-muted-foreground">
-            View your complete nutrition and workout schedule
+            <Card>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                <CardTitle className="text-sm font-medium">Fat</CardTitle>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  className="h-4 w-4 text-muted-foreground"
+                >
+                  <path d="M12 2v20M2 12h20" />
+                </svg>
+              </CardHeader>
+              <CardContent>
+                <div className="text-2xl font-bold">{Math.round(progress.fat)}g</div>
+                <div className="text-xs text-muted-foreground">
+                  of {plan?.macros.fat || '---'}g
+                </div>
+                <Progress 
+                  value={calculatePercentage(progress.fat, plan?.macros.fat || 0)} 
+                  className="mt-2"
+                />
+              </CardContent>
+            </Card>
           </div>
-          <Link href="/weekly-plan">
-            <Button variant="outline" className="gap-2">
-              <CalendarIcon />
-              View Weekly Plan
-            </Button>
-          </Link>
+
+          {plan && (
+            <div className="flex justify-between items-center pt-4 border-t">
+              <div className="text-sm text-muted-foreground">
+                View your complete nutrition and workout schedule
+              </div>
+              <Link href="/weekly-plan">
+                <Button variant="outline" className="gap-2">
+                  <CalendarIcon />
+                  View Weekly Plan
+                </Button>
+              </Link>
+            </div>
+          )}
         </div>
-      )}
-    </div>
+      </CardContent>
+    </Card>
   )
 }
 
